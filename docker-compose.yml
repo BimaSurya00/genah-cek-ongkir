@@ -1,0 +1,7 @@
+services:
+  abimanyu-admin:
+    image: admin-genah-app
+    container_name: genah-app-admin
+    restart: always
+    ports:
+      - 3034:80
