@@ -1,0 +1,41 @@
+name: Deploy Genah Express Production
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted  # ← Ubah ke self-hosted atau label yang sesuai
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Environment Variables
+        run: |
+          echo "${{ vars.ENV_PRODUCTION }}" > .env
+          echo "File .env dibuat di: $(pwd)"
+          ls -la .env
+      
+      - name: Build Docker Image
+        run: |
+          if [ -f create_image.sh ]; then
+            chmod +x create_image.sh
+            ./create_image.sh
+          else
+            echo "create_image.sh tidak ditemukan, build dengan docker"
+            docker build -t genah-express:latest .
+          fi
+      
+      - name: Debug .env File
+        run: |
+          echo "Isi .env file:"
+          cat .env
+      
+      - name: Deploy with Docker Compose
+        run: docker compose up -d --build
+      
+      - name: Cleanup
+        run: docker image prune -af
