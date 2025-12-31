@@ -685,7 +685,7 @@
       </div>
     {/if}
 
-    <!-- Footer -->
+    <!-- Footer ! -->
     <div class="text-center text-stone-400 text-sm pb-6">
       <p>© 2026 Genah Express</p>
     </div>
