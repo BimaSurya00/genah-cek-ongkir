@@ -41,6 +41,7 @@ export async function searchAddress(query) {
  */
 export async function getPricing(params) {
     const { from, thru, weight, width = '', height = '', length = '' } = params;
+    console.log(BASE_URL);
 
     if (!from || !thru || !weight) {
         throw new Error('Parameter from, thru, dan weight wajib diisi');
@@ -63,3 +64,4 @@ export default {
     searchAddress,
     getPricing,
 };
+//

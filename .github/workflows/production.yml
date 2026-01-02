@@ -6,24 +6,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    runs-on: self-hosted
-    
+  build:
+    runs-on: ["genah-Express"]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
       - name: Setup Environment Variables
         run: |
-          echo "${{ vars.ENV_PRODUCTION }}" > .env
-          ls -la .env
-      
-      - name: Deploy with Docker Compose
+          echo "${{vars.ENV_PRODUCTION}}" > .env
+          echo "File .env dibuat di: $(pwd)"
+          ls -la
+      - name: Setup Node
         run: |
-          docker compose down || true
-          docker compose up -d --build
-      
-      - name: Check Container Status
-        run: docker ps | grep genah-express
-      
-      
+          chmod +x create_image.sh
+          ./create_image.sh
+  # Deployment job
+  deploy:
+    runs-on: ["genah-Express"]
+    needs: build
+    steps:
+      - name: Debug .env File
+        run: cat .env
+
+      - name: Docker Compose Up
+        run: docker compose up -d

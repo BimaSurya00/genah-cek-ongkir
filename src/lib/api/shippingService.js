@@ -1,27 +1,27 @@
 /**
  * @typedef {Object} AddressData
- * @property {number} id - Kelurahan ID (use this for pricing API)
- * @property {string} sub_district_name - Kelurahan name
- * @property {number} district_id - Kecamatan ID
- * @property {string} district_name - Kecamatan name
- * @property {number} region_id - Kabupaten/Kota ID
- * @property {string} region_name - Kabupaten/Kota name
- * @property {number} province_id - Province ID
- * @property {string} province_name - Province name
+ * @property {number} id 
+ * @property {string} sub_district_name 
+ * @property {number} district_id 
+ * @property {string} district_name 
+ * @property {number} region_id 
+ * @property {string} region_name 
+ * @property {number} province_id 
+ * @property {string} province_name 
  * @property {string} district_postal_code
  * @property {string} sub_district_postal_code
  */
 
 /**
  * @typedef {Object} PricingData
- * @property {string} service - Courier service code
- * @property {string} service_name - Full service name
- * @property {string} service_type - Service type code
- * @property {string} cost - Shipping cost in rupiah
- * @property {string} etd - Estimated time of delivery
- * @property {boolean} cod - COD availability
- * @property {string} group - Service group (regular/express)
- * @property {boolean} drop - Drop off availability
+ * @property {string} service 
+ * @property {string} service_name 
+ * @property {string} service_type 
+ * @property {string} cost 
+ * @property {string} etd 
+ * @property {boolean} cod 
+ * @property {string} group 
+ * @property {boolean} drop
  */
 
 /**
@@ -31,7 +31,7 @@
 const shippingService = {
     /**
      * Search address/location by keyword
-     * @param {string} query - Search keyword (city, district, or village name)
+     * @param {string} query 
      * @returns {Promise<{name: string, message: string, data: AddressData[]}>}
      */
     async searchAddress(query) {

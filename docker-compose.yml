@@ -1,13 +1,7 @@
-version: '3.8'
-
 services:
   genah-express:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: genah-express
     container_name: genah-express
+    restart: always
     ports:
-      - "3034:80"
-    env_file:
-      - .env
-    restart: unless-stopped
+      - 3034:3000  
